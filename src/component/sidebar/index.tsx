@@ -24,14 +24,14 @@ export function Sidebar() {
                             <div id="icon">{val.icon}</div>
                             <div id="title">
                                 {val.title}
-                            </div>  
+                            </div>
                         </li>
                     )
                 })}
             </ul>
 
             
-            { open && <MeetingRoomDialog open={open} /> }
+            { open && <MeetingRoomDialog open={open} sidebarData={sidebarData} setSidebarData={setSidebarData} /> }
         </div>
     )
 }
