@@ -30,6 +30,12 @@ export function MeetingRoomDialog({
             <h2 className="DialogTitle">
                 회의방 추가하기
             </h2>
+            <div className="DialogContent">
+                <h3>용도</h3>
+                <select className="DialogSelect">
+                    <option>1</option>
+                </select>
+            </div>
             <input className="DialogInput" 
                    placeholder="회의방 이름을 입력해주세요!"
                    onChange={onChange}  />
