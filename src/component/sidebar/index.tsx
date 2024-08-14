@@ -1,12 +1,23 @@
 import '../../App.css'
 import { SidebarData } from '../../config'
+import { useState } from 'react';
+import { MeetingRoomDialog } from '../dialog/MeetingRoom';
+import { stateStore } from '../../entities/user';
 
 export function Sidebar() {
+
+    const [sidebarData, setSidebarData] = useState(SidebarData);
+    const { open, setOpen } = stateStore();
+
+    const meetingRoomClick = () => {
+        setOpen(true);
+    }
+
     return (
         <div className="Sidebar">
-            <button className='SidebarButton'>회의방 새로 만들기</button>
+            <button className='SidebarButton' onClick={() => meetingRoomClick()}>회의방 새로 만들기</button>
             <ul className='SidebarList'>
-                {SidebarData.map((val, key) => {
+                {sidebarData.map((val, key) => {
                     return (
                         <li key={key}
                             className="row">
@@ -18,6 +29,9 @@ export function Sidebar() {
                     )
                 })}
             </ul>
+
+            
+            { open && <MeetingRoomDialog open={open} /> }
         </div>
     )
 }
