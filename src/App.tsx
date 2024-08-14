@@ -1,5 +1,6 @@
 import './App.css'
 import { Sidebar } from './component/sidebar'
+import './font.css'
 
 function App() {
   return (
