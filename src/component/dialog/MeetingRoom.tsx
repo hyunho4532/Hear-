@@ -1,6 +1,6 @@
-import { MeetingRoom } from "@mui/icons-material"
 import { ChangeEvent, useState } from "react"
 import { supabase } from "../../supabase";
+import { PurposeData } from "../../config";
 
 export type MeetingRoomProps = {
     open: boolean, 
@@ -17,26 +17,32 @@ export type MeetingRoomProps = {
 }
 
 export function MeetingRoomDialog({
-    open, 
-    sidebarData, 
-    setSidebarData
+    open
 }: MeetingRoomProps) {
 
     const [meetingRoom, setMeetingRoom] = useState('');
+    const [purpose, setPurpose] = useState('')
 
     const addMeetingRoom = async () => {
 
-        console.log(meetingRoom);
-
-        const { data, error } = await supabase.from('MeetingRoom').insert({ title: meetingRoom });
+        const { error } = await supabase.from('MeetingRoom').insert({ title: meetingRoom, purpose: purpose });
     
         if (error) {
             console.log("에러 발생" + error);
         }
     }
 
-    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setMeetingRoom(event.target.value);
+    const onChange = (key: number, event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        switch(key) {
+            case 1: {
+                setMeetingRoom(event.target.value);
+                break;
+            }
+            case 2: {
+                setPurpose(event.target.value);
+                break;
+            }
+        }
     }
 
     return (
@@ -46,8 +52,11 @@ export function MeetingRoomDialog({
             </h2>
             <div className="DialogPurpose">
                 <h3>용도 선택: </h3>
-                <select className="DialogSelect">
-                    <option>1</option>
+                <select className="DialogSelect"
+                        onChange={(event) => onChange(2, event)}>
+                    { PurposeData.map((data: any, index: number) => (
+                        <option key={index} value={data.title}>{data.title} {data.icon}</option>
+                    ))}
                 </select>
             </div>
 
@@ -55,7 +64,7 @@ export function MeetingRoomDialog({
                 <h3>이름 입력: </h3>
                 <input className="DialogInput" 
                    placeholder="회의방 이름을 입력해주세요!"
-                   onChange={onChange}  />
+                   onChange={(event) => onChange(1, event)}  />
             </div>
 
             <button className="DialogButton" 

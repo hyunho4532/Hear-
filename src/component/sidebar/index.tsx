@@ -1,23 +1,48 @@
 import '../../App.css'
 import { SidebarData } from '../../config'
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MeetingRoomDialog } from '../dialog/MeetingRoom';
 import { stateStore } from '../../entities/user';
+import { supabase } from '../../supabase';
+import BookIcon from '@mui/icons-material/Book';
 
 export function Sidebar() {
 
     const [sidebarData, setSidebarData] = useState(SidebarData);
+    
     const { open, setOpen } = stateStore();
 
     const meetingRoomClick = () => {
         setOpen(true);
     }
 
+    useEffect(() => {
+        const fetchMeetingRoom = async () => {
+            const response = await supabase.from('MeetingRoom').select();
+    
+            if (response.data) {
+                setSidebarData(prevSidebarData => [
+                    ...prevSidebarData,
+                    ...response.data.map((data) => ({
+                        title: data.title,
+                        icon: <BookIcon />,
+                        link: '',
+                    }))
+                ]);
+            }
+        }
+
+        fetchMeetingRoom();
+
+    }, [])
+
+    console.log(sidebarData);
+
     return (
         <div className="Sidebar">
             <button className='SidebarButton' onClick={() => meetingRoomClick()}>회의방 새로 만들기</button>
             <ul className='SidebarList'>
-                {sidebarData.map((val, key) => {
+                { sidebarData.map((val, key) => {
                     return (
                         <li key={key}
                             className="row">
