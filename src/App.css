@@ -1,6 +1,6 @@
 .App {
   width: 100vw;
-  height: 97.6vh;
+  height: 96vh;
 }
 
 body {
@@ -12,6 +12,17 @@ body {
   width: 300px;
   background-color: #2F4050;
   padding-top: 20px;
+}
+
+.Footer {
+  position: relative;
+  transform: translateY(-100%);
+}
+
+.Footer .FooterList {
+  width: 100%;
+  height: 90px;
+  background-color: #2F4050;
 }
 
 .Dialog {

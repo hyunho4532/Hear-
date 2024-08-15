@@ -1,6 +1,6 @@
 import '../../App.css'
 import { SidebarData } from '../../config'
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MeetingRoomDialog } from '../dialog/MeetingRoom';
 import { stateStore } from '../../entities/user';
 import { supabase } from '../../supabase';
