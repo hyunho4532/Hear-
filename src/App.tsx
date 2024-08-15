@@ -6,7 +6,11 @@ import './font.css'
 function App() {
   return (
     <div className="App">
-      <Sidebar />
+      <div className="Main">
+        <Sidebar />
+        <div className="Video">
+        </div>
+      </div>
       <Footer />
     </div>
   )
