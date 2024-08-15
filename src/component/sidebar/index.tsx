@@ -35,9 +35,7 @@ export function Sidebar() {
         fetchMeetingRoom();
 
     }, [])
-
-    console.log(sidebarData);
-
+    
     return (
         <div className="Sidebar">
             <button className='SidebarButton' onClick={() => meetingRoomClick()}>회의방 새로 만들기</button>

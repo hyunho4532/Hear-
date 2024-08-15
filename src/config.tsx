@@ -2,6 +2,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import PeopleIcon from '@mui/icons-material/People';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import MicIcon from '@mui/icons-material/Mic';
+import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 
 import './config.css'
 
@@ -40,5 +42,13 @@ export const MeetingFeatureData = [
     {
         title: "반응",
         icon: <InsertEmoticonIcon className="Icons" />
+    },
+    {
+        title: "음성",
+        icon: <MicIcon className="Icons" />
+    },
+    {
+        title: "화면 공유",
+        icon: <ScreenShareIcon className="Icons" />
     }
 ]

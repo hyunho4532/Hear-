@@ -1,6 +1,6 @@
 .App {
   width: 100vw;
-  height: 95.8vh;
+  height: 95.9vh;
 }
 
 body {
@@ -31,10 +31,13 @@ body {
   font-family: 'yg-jalnan';
   color: white;
   text-align: center;
+  font-size: 14px;
+  padding-left: 260px;
 }
 
 .Footer .FooterList .FooterContent .FooterIcon {
   padding-top: 6px;
+  cursor: pointer;
 }
 
 .Dialog {
